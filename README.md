@@ -167,9 +167,20 @@ $ curl -s localhost:8085/api/status | jq '.'  # check daemon health
 - **Never creates per-session files.** Memory is merged by topic so it stays organized and doesn't bloat.
 - **Never sends data anywhere.** Everything stays in local markdown files on your machine.
 
-### Memory limits
+### Memory decay
 
-The instruction caps total entries at 50. When a new entry is added, the least useful existing entry is replaced. This prevents unbounded growth — your memory stays lean and relevant.
+Knowledge that keeps getting used survives. Knowledge that never gets recalled fades out naturally.
+
+Every entry gets a `last_used` date. When Claude recalls a memory, its date refreshes. When the 50-entry cap is hit, the entry with the oldest `last_used` date gets replaced.
+
+```
+"Don't use perl on uncommitted files"  last_used: today     → survives
+"Kill stale PID on port 8085"          last_used: 3 days ago → survives
+"Redis adds 3ms latency"              last_used: 2 months ago → fading
+"Old workaround for Node 16 bug"      last_used: 4 months ago → replaced next
+```
+
+No cleanup needed. No manual pruning. The memory self-organizes like real memory — what matters stays, what doesn't fades.
 
 ---
 
