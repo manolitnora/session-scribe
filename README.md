@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="mascot.jpeg" alt="session-scribe mascot" width="200">
+  <img src="mascot.png" alt="session-scribe mascot" width="400">
 </p>
 
 # session-scribe
