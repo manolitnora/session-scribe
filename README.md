@@ -354,7 +354,7 @@ session-scribe is Layer 1 of a three-layer system for giving LLM agents persiste
 ```
 Layer 3: verra-kernel            Computation — MCP server with memory decay,
                                  signal processing, inference scoring, crypto
-                                 github.com/manolitnora/verra-kernel
+                                 (coming soon)
 
 Layer 2: instruction-catalog     Governance — 30 one-paragraph instructions
                                  that activate latent LLM capabilities
