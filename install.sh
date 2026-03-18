@@ -3,25 +3,33 @@ set -e
 
 SCRIBE_BLOCK='
 <!-- SESSION-SCRIBE:START -->
-## Session Scribe
+## Session Scribe (ALWAYS ACTIVE)
 
-**On session start:** Scan memory for anything related to the current task.
+This is not optional. Follow these rules on EVERY turn, not just at session start or end.
+
+**On first message:** Scan memory for anything related to the current task.
 If a past SOP, dead end, or lesson is relevant, surface it immediately
 before beginning work.
 
-**On session end:** Update memory files with:
-- New SOPs (numbered steps to reproduce what was done)
+**On every turn:** When any of these happen, save to memory immediately — do not wait:
+- You discover a fix or working solution → save as SOP
+- Something fails or a wrong approach is tried → save as dead end
+- You learn something non-obvious → save as lesson
+- A command works and is worth reusing → save as key command
+- The user corrects you → save as feedback
+
+**What to save:**
+- SOPs (numbered steps to reproduce what was done)
 - Dead ends (what failed first and why)
 - Lessons learned (non-obvious discoveries)
 - Key commands (copy-pasteable, verified working)
 
-Rules:
+**Rules:**
 - Merge into existing memory files by topic. Never create per-session files.
 - Keep total entries under 50. Replace the least useful when adding new.
 - Never save secrets, API keys, tokens, or credentials.
 - Adding new entries: do automatically without asking.
 - Modifying or removing existing entries: show what you want to change and wait for approval. Another person or session may depend on it.
-- Do session-start recall automatically without asking.
 <!-- SESSION-SCRIBE:END -->'
 
 # Detect Claude Code config file
