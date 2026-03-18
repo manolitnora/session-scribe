@@ -24,9 +24,14 @@ before beginning work.
 - Lessons learned (non-obvious discoveries)
 - Key commands (copy-pasteable, verified working)
 
+**Memory decay:**
+- When saving, add a `last_used: YYYY-MM-DD` date to each entry.
+- When recalling a memory, update its `last_used` to today.
+- When adding a new entry and at the 50 cap, replace the entry with the oldest `last_used` date. Knowledge that keeps getting used survives. Knowledge that never gets recalled again fades out naturally.
+
 **Rules:**
 - Merge into existing memory files by topic. Never create per-session files.
-- Keep total entries under 50. Replace the least useful when adding new.
+- Keep total entries under 50. Evict by oldest `last_used` when full.
 - Never save secrets, API keys, tokens, or credentials.
 - Adding new entries: do automatically without asking.
 - Modifying or removing existing entries: show what you want to change and wait for approval. Another person or session may depend on it.
