@@ -1,6 +1,6 @@
 # session-scribe
 
-**Every AI coding session remembers itself.**
+**Every Claude Code session remembers itself.**
 
 One install. Zero config. No dependencies. No app to run. The knowledge compounds automatically across every session, every terminal, every project.
 
@@ -8,7 +8,7 @@ One install. Zero config. No dependencies. No app to run. The knowledge compound
 
 ## The Problem
 
-Your AI coding tool forgets everything when the session ends.
+Claude Code forgets everything when the session ends.
 
 Monday morning, you start a new session:
 
@@ -18,11 +18,11 @@ AI:  "Can you tell me more? What file? What error? What have you tried?"
 You: "uhh... I fixed this last week... it was in the middleware I think..."
 
     20 min re-explaining context you already gave last week.
-    AI re-discovers the same fix.
+    Claude re-discovers the same fix.
     45 min total.
 ```
 
-You've done this before. The AI has done this before. Neither of you remembers.
+You've done this before. Claude has done this before. Neither of you remembers.
 
 ## The Fix
 
@@ -37,7 +37,7 @@ AI:  "Found it. You fixed a similar issue on March 12 —
     5 min total.
 ```
 
-The AI remembered because session-scribe told it to.
+Claude remembered because session-scribe told it to.
 
 ---
 
@@ -49,17 +49,17 @@ cd session-scribe
 chmod +x install.sh && ./install.sh
 ```
 
-That's it. Every session from now on auto-documents.
+That's it. Every Claude Code session from now on auto-documents.
 
 ### What the installer does
 
-1. Detects which AI coding tool you use (Claude Code, Cursor, Windsurf, etc.)
-2. Appends one paragraph of instructions to your tool's config file
+1. Finds your Claude Code config file (`~/.claude/CLAUDE.md`)
+2. Appends one paragraph of instructions
 3. Done. No background process. No server. No account.
 
 ### Verify it's working
 
-Open a new terminal, start your AI tool, and ask:
+Open a new terminal, start Claude Code, and ask:
 
 ```
 "What do you know about session-scribe?"
@@ -71,7 +71,7 @@ If it describes the session-scribe protocol, it's active.
 
 ## How It Works
 
-session-scribe adds one paragraph to your AI tool's config file. That paragraph creates a closed loop:
+session-scribe adds one paragraph to your Claude Code config. That paragraph creates a closed loop:
 
 ```
      START SESSION
@@ -84,7 +84,7 @@ session-scribe adds one paragraph to your AI tool's config file. That paragraph 
      WORK -------> you work normally, nothing changes
           |
           v
-     DOCUMENT ---> AI automatically saves:
+     DOCUMENT ---> Claude automatically saves:
           |        - SOPs (steps to reproduce what was done)
           |        - Dead ends (what failed and why)
           |        - Lessons learned (non-obvious discoveries)
@@ -107,7 +107,7 @@ session-scribe captures 4 types of knowledge:
 ### SOPs (Standard Operating Procedures)
 **"How do I redo this?"**
 
-Numbered steps someone could follow to reproduce the work. Next time you or a teammate needs to do the same thing, the AI gives you the exact steps instead of figuring it out from scratch.
+Numbered steps someone could follow to reproduce the work. Next time you or a teammate needs to do the same thing, Claude gives you the exact steps instead of figuring it out from scratch.
 
 ```
 SOP: Deploy to staging
@@ -158,7 +158,7 @@ $ curl -s localhost:8085/api/status | jq '.'  # check daemon health
 ### What it will NOT do
 
 - **Never saves secrets, API keys, tokens, or credentials.** This is explicitly forbidden in the instruction.
-- **Never silently modifies or deletes existing memories.** If the AI thinks a past memory should change, it shows you the proposed change and waits for your approval. This protects you and any teammates sharing the same workspace.
+- **Never silently modifies or deletes existing memories.** If Claude thinks a past memory should change, it shows you the proposed change and waits for your approval. This protects you and any teammates sharing the same workspace.
 - **Never creates per-session files.** Memory is merged by topic so it stays organized and doesn't bloat.
 - **Never sends data anywhere.** Everything stays in local markdown files on your machine.
 
@@ -168,35 +168,17 @@ The instruction caps total entries at 50. When a new entry is added, the least u
 
 ---
 
-## Works With
-
-| Tool | Config file | Auto-detected |
-|------|-------------|:---:|
-| Claude Code (global) | `~/.claude/CLAUDE.md` | Yes |
-| Claude Code (project) | `.claude/CLAUDE.md` | Yes |
-| Cursor | `.cursorrules` | Yes |
-| Windsurf | `.windsurfrules` | Yes |
-| GitHub Copilot | `.github/copilot.md` | Yes |
-| Cline | `.clinerules` | Yes |
-| Continue | `.continuerules` | Yes |
-
-The installer checks for these config files in order and appends to the first one it finds. If none exist, it creates `~/.claude/CLAUDE.md` (Claude Code global config).
-
-**One install covers all terminals.** Global config files (like `~/.claude/CLAUDE.md`) are read by every instance of the tool, across every terminal window, every project, automatically.
-
----
-
 ## Multiple Terminals
 
 session-scribe works across all your terminal windows simultaneously. If you have 5 tabs running Claude Code, all 5 have session-scribe active. No per-tab setup.
 
 ```
-Tab 1 (fixing auth)     — session-scribe active
-Tab 2 (writing tests)   — session-scribe active
+Tab 1 (fixing auth)      — session-scribe active
+Tab 2 (writing tests)    — session-scribe active
 Tab 3 (debugging deploy) — session-scribe active
 ```
 
-This works because the config file is global — every instance reads the same file on every message.
+This works because `~/.claude/CLAUDE.md` is global — every Claude Code instance reads it on every message.
 
 ---
 
@@ -204,9 +186,9 @@ This works because the config file is global — every instance reads the same f
 
 If your team shares a project workspace, session-scribe works across team members:
 
-- One person figures out a tricky deploy process and their AI saves the SOP
-- Next person on the team asks about deploying — their AI surfaces the SOP immediately
-- The modify/delete approval rule prevents one person's AI from silently overwriting another person's memories
+- One person figures out a tricky deploy process and Claude saves the SOP
+- Next person on the team asks about deploying — their Claude surfaces the SOP immediately
+- The modify/delete approval rule prevents one person's Claude from silently overwriting another person's memories
 
 To share memories across a team, commit the memory folder to your repo:
 
@@ -215,7 +197,7 @@ git add .claude/projects/*/memory/
 git commit -m "shared session-scribe memories"
 ```
 
-Now everyone's AI learns from everyone's sessions.
+Now everyone's Claude learns from everyone's sessions.
 
 ---
 
@@ -289,10 +271,10 @@ AI:  "You evaluated this on Feb 20. Lesson learned:
 ## FAQ
 
 **Do I need to do anything during a session?**
-No. session-scribe is fully autonomous. Just work normally. The AI recalls at the start and documents at the end without being asked.
+No. session-scribe is fully autonomous. Just work normally. Claude recalls at the start and documents at the end without being asked.
 
 **Does it cost anything?**
-No. It uses the AI that's already running in your terminal. No extra API calls, no subscriptions.
+No. It uses Claude Code — the AI already running in your terminal. No extra API calls, no subscriptions.
 
 **Does it slow anything down?**
 No. It's a paragraph of text in a config file, not a running program.
@@ -309,20 +291,20 @@ No. The instruction requires approval before modifying or removing any existing 
 **What if my memory files get too big?**
 The instruction caps entries at 50 and replaces the least useful when adding new ones.
 
-**Does it work if I use multiple AI tools?**
-The installer appends to the first config file it finds. If you use multiple tools, run the installer from different project directories or manually append the instruction block to each tool's config file.
-
 **Does it work across terminal windows?**
-Yes. Global config files are read by every instance of the tool. All terminals share the same session-scribe instruction and the same memory.
+Yes. `~/.claude/CLAUDE.md` is global. All terminals share the same instruction and the same memory.
 
 **How do I know it's working?**
-Start a new session and ask: "What do you know about session-scribe?" If the AI describes the protocol, it's active.
+Start a new session and ask: "What do you know about session-scribe?" If Claude describes the protocol, it's active.
 
 **Can I see what it saved?**
-Yes. Memory files are plain markdown. For Claude Code, check `~/.claude/projects/*/memory/`. Open them in any text editor, Obsidian, or VS Code.
+Yes. Memory files are plain markdown. Check `~/.claude/projects/*/memory/`. Open them in any text editor, Obsidian, or VS Code.
 
 **Does my team need to install it separately?**
 Each person installs once on their machine. To share memories, commit the memory folder to your shared repo.
+
+**Does it work with Cursor, Windsurf, or Copilot?**
+Currently session-scribe fully supports Claude Code only. Claude Code is the only AI coding tool with a built-in persistent memory system that supports the full recall-document-merge loop. Other tools can read the instruction but lack the memory infrastructure to complete the cycle.
 
 ---
 
@@ -351,11 +333,11 @@ Cleanly removes the session-scribe instruction block from your config file. Ever
 
 ## Philosophy
 
-The AI already has intelligence. It already has memory. It already has context. Nobody thought to just ask it to use them together.
+Claude Code already has intelligence. It already has memory. It already has context. Nobody thought to just ask it to use them together.
 
-The entire product is one paragraph of English. Not code — instructions. The AI interprets them, follows them, and gets smarter every session.
+The entire product is one paragraph of English. Not code — instructions. Claude interprets them, follows them, and gets smarter every session.
 
-The best tool is the one you never think about. session-scribe installs in 10 seconds and disappears. The AI does the rest.
+The best tool is the one you never think about. session-scribe installs in 10 seconds and disappears. Claude does the rest.
 
 ---
 

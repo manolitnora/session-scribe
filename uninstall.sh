@@ -4,11 +4,6 @@ set -e
 FILES=(
   "$HOME/.claude/CLAUDE.md"
   ".claude/CLAUDE.md"
-  ".cursorrules"
-  ".windsurfrules"
-  ".github/copilot.md"
-  ".clinerules"
-  ".continuerules"
 )
 
 FOUND=0

@@ -24,7 +24,7 @@ Rules:
 - Do session-start recall automatically without asking.
 <!-- SESSION-SCRIBE:END -->'
 
-# Detect AI tool config file
+# Detect Claude Code config file
 TARGET=""
 TOOL=""
 
@@ -34,21 +34,6 @@ if [ -f "$HOME/.claude/CLAUDE.md" ]; then
 elif [ -f ".claude/CLAUDE.md" ]; then
   TARGET=".claude/CLAUDE.md"
   TOOL="Claude Code (project)"
-elif [ -f ".cursorrules" ]; then
-  TARGET=".cursorrules"
-  TOOL="Cursor"
-elif [ -f ".windsurfrules" ]; then
-  TARGET=".windsurfrules"
-  TOOL="Windsurf"
-elif [ -f ".github/copilot.md" ]; then
-  TARGET=".github/copilot.md"
-  TOOL="GitHub Copilot"
-elif [ -f ".clinerules" ]; then
-  TARGET=".clinerules"
-  TOOL="Cline"
-elif [ -f ".continuerules" ]; then
-  TARGET=".continuerules"
-  TOOL="Continue"
 else
   # Default: create Claude Code global config
   mkdir -p "$HOME/.claude"
@@ -67,5 +52,5 @@ echo "$SCRIBE_BLOCK" >> "$TARGET"
 
 echo "session-scribe installed -> $TARGET ($TOOL)"
 echo ""
-echo "Every AI coding session will now auto-document."
+echo "Every Claude Code session will now auto-document."
 echo "Uninstall: ./uninstall.sh"
