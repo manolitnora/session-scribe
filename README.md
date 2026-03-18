@@ -2,35 +2,36 @@
   <img src="mascot.png" alt="session-scribe mascot" width="400">
 </p>
 
-# session-scribe
+<h1 align="center">session-scribe</h1>
 
-**Every Claude Code session remembers itself.**
+<p align="center"><strong>Cure Claude Code's amnesia.</strong></p>
 
-One install. Zero config. No dependencies. No app to run. The knowledge compounds automatically across every session, every terminal, every project.
+<p align="center">Every session starts fresh. Claude forgets what it did, what failed, and what it learned.<br>session-scribe fixes that. One install. Zero config. No dependencies.</p>
 
 ---
 
-## The Problem
+## The Problem: AI Amnesia
 
-Claude Code forgets everything when the session ends.
+Every Claude Code session starts with a blank slate. Claude doesn't remember:
 
-Monday morning, you start a new session:
+- The bug it **already fixed** last week
+- The approach that **already failed** yesterday
+- The workaround it **already discovered** this morning
+- The 9 files it **already destroyed** with a bad perl command
+
+So it confidently walks into the same wall. Tries the same wrong approach. Makes the same mistake. And you spend 30 minutes watching it rediscover what it already knew.
 
 ```
 You: "fix the auth bug"
 AI:  "Can you tell me more? What file? What error? What have you tried?"
 You: "uhh... I fixed this last week... it was in the middleware I think..."
 
-    20 min re-explaining context you already gave last week.
-    Claude re-discovers the same fix.
-    45 min total.
+    20 min re-explaining. Claude re-discovers the same fix. 45 min total.
 ```
 
-You've done this before. Claude has done this before. Neither of you remembers.
+## The Cure
 
-## The Fix
-
-Install session-scribe. Same Monday morning:
+Install session-scribe. Same scenario:
 
 ```
 You: "fix the auth bug"
@@ -41,7 +42,7 @@ AI:  "Found it. You fixed a similar issue on March 12 —
     5 min total.
 ```
 
-Claude remembered because session-scribe told it to.
+Claude remembered because session-scribe told it to. The amnesia is gone.
 
 ---
 
