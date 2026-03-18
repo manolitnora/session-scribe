@@ -76,24 +76,24 @@ If it describes the session-scribe protocol, it's active.
 
 ## How It Works
 
-session-scribe adds one paragraph to your Claude Code config. That paragraph creates a closed loop:
+session-scribe adds one paragraph to your Claude Code config. That paragraph creates a continuous loop:
 
 ```
-     START SESSION
+     FIRST MESSAGE
           |
           v
      RECALL -----> checks memory for anything related
           |        to what you're working on. Surfaces
           |        past SOPs, dead ends, lessons.
           v
-     WORK -------> you work normally, nothing changes
+     EVERY TURN -> Claude saves knowledge THE MOMENT
+          |        it happens — not at session end:
           |
-          v
-     DOCUMENT ---> Claude automatically saves:
-          |        - SOPs (steps to reproduce what was done)
-          |        - Dead ends (what failed and why)
-          |        - Lessons learned (non-obvious discoveries)
-          |        - Key commands (copy-pasteable, verified)
+          |        Fix discovered?    → save SOP immediately
+          |        Something failed?  → save dead end immediately
+          |        Non-obvious lesson?→ save lesson immediately
+          |        Command worked?    → save key command immediately
+          |        User corrects?     → save feedback immediately
           v
      MERGE ------> updates existing memory by topic,
           |        never creates per-session files
@@ -101,7 +101,7 @@ session-scribe adds one paragraph to your Claude Code config. That paragraph cre
           +------> loops back to RECALL next session
 ```
 
-Each session makes the next one faster. The knowledge compounds. You do nothing.
+Claude saves as it works, not after. The knowledge compounds in real time. You do nothing.
 
 ---
 
