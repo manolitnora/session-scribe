@@ -347,6 +347,28 @@ Cleanly removes the session-scribe instruction block from your config file. Ever
 
 ---
 
+## Part of the Verra Stack
+
+session-scribe is Layer 1 of a three-layer system for giving LLM agents persistent intelligence:
+
+```
+Layer 3: verra-kernel            Computation — MCP server with memory decay,
+                                 signal processing, inference scoring, crypto
+                                 github.com/manolitnora/verra-kernel
+
+Layer 2: instruction-catalog     Governance — 30 one-paragraph instructions
+                                 that activate latent LLM capabilities
+                                 github.com/manolitnora/instruction-catalog
+
+Layer 1: session-scribe          Memory — autonomous session documentation
+ ──▶ YOU ARE HERE                with recall, decay, and feedback loop
+                                 github.com/manolitnora/session-scribe
+```
+
+Each layer works independently. Start with session-scribe. Add instructions when you want more governance. Add the kernel when you need computation.
+
+---
+
 ## Philosophy
 
 Claude Code already has intelligence. It already has memory. It already has context. Nobody thought to just ask it to use them together.
